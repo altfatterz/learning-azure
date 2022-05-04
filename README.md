@@ -123,9 +123,6 @@ brew upgrade powershell --cask
 ````
 
 
-```
-
-
 Azure Pricing Calculator: https://azure.microsoft.com/en-us/pricing/calculator/
 
 TCO Calculator: https://azure.microsoft.com/en-us/pricing/tco/calculator/
