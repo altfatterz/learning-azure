@@ -84,6 +84,25 @@ $ az provider register --namespace Microsoft.AzureActiveDirectory
 $ az provider show -n Microsoft.AzureActiveDirectory
 ```
 
+- `Azure Access Control`
+  - `Azure RBAC`
+    - Example:
+      - Jenny (Staff Member) needs permissions to manage all VMs in `Sub1` subscription and all storage accounts in `RG2` resource group
+      - We do it with two assignments: one on `subscription layer` and the other on `resource group` layer
+      - Built in Roles: `VM contributor`, `Storage Account Contributor`
+      - `Contributor` means full access without the ability to change permissions 
+    - `Management Group` -> `Subscription` -> `Resource Group` -> `Resource`
+    - `Custom Roles` -> when built-in roles are two much
+      - by default, they have no access, unless you specify `actions/dataActions` (`ALLOW` model)
+      - with `notActions/notDataActions` you can define `DENY` rules
+      - a custom role is only available for the subscriptions with the given Azure AD Tenant.
+  - `Azure AD Roles`
+    - provides permissions only to resources within our Azure AD Tenant
+    - Example:
+      - Carla, (Staff Member) needs to manage users, groups and applications, full access to manage all apps, users and groups only in AU1 administration unit 
+      - We do it with two assignments: one on the tenant level and one on the administration unit level
+    - Built in Roles: `Global Admin`, `User Admin`, `App Admin`
+    - `Custom Roles` - also possible, but no `DENY` functionality only `ALLOW`
 
 - `Azure Subscriptions`
   - each of subscriptions could be associated with a `single` Azure AD Tenant
