@@ -1,3 +1,5 @@
+## Chapter 2 - Architecting Azure Solutions
+
 1. Azure Well-Architected
    Framework: [https://learn.microsoft.com/en-us/azure/architecture/framework/](https://learn.microsoft.com/en-us/azure/architecture/framework/)
 
