@@ -92,6 +92,8 @@
         - Basic (6 versions, C0 - shared, C1-6 - dedicated)
         - Standard (6 versions)
         - Premium (6 versions, VPN support, Redis cluster, high network bandwith)
+      - Built-in roles:
+        - TODO
  
     - [Content Delivery Network](https://learn.microsoft.com/en-us/azure/frontdoor/)
       - Speed up access to static content (images, CSS or HTML)
@@ -111,6 +113,9 @@
         - HTTPS custom domain support
         - File compression
         - Geo-filtering - block access based on location
+      - Built-in roles:
+        - TODO
+
 
 4. **Designing App Configuration and Deployment**
     
