@@ -75,17 +75,42 @@
       - `Azure Event Hubs Data Receiver` - Allows receive access to Azure Event Hubs resources.
       - `Azure Event Hubs Data Sender` - Allows send access to Azure Event Hubs resources.
 
-  - Comparing messaging services: https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services#comparison-of-services
+      - Comparing messaging services: https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services#comparison-of-services
 
-  - `Service` --------------> `Purpose` ----------------> `Type` -----------------------------> `When to use`
-    Event Grid  ------------> Reactive programming -----> Event distribution (discrete) ------> React to status changes
-    Event Hubs  ------------> Big data pipeline --------> Event streaming (series) -----------> Telemetry and distributed data streaming
-    Service Bus ------------> Enterprise messaging -----> Message ----------------------------> Order processing and financial transactions
+    - Event Grid  --> Reactive programming --> Event distribution (discrete) --> React to status changes
+    - Event Hubs  --> Big data pipeline    --> Event streaming (series)      --> Telemetry and distributed data streaming
+    - Service Bus --> Enterprise messaging --> Message                       --> Order processing and financial transactions
    
+
 3. **Exploring Caching Services**
     
-    - `Azure Cache for Redis` - https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/
-    - `Content Delivery Network` - https://learn.microsoft.com/en-us/azure/frontdoor/
+    - [Azure Cache for Redis](https://learn.microsoft.com/en-us/azure/azure-cache-for-redis)
+      - Microsoft managed OSS/Enterprise Redis
+      - Read write to an in-memory data store
+      - Access session state a nd other data fast
+      - Service Tiers:
+        - Basic (6 versions, C0 - shared, C1-6 - dedicated)
+        - Standard (6 versions)
+        - Premium (6 versions, VPN support, Redis cluster, high network bandwith)
+ 
+    - [Content Delivery Network](https://learn.microsoft.com/en-us/azure/frontdoor/)
+      - Speed up access to static content (images, CSS or HTML)
+      - Azure Front Door and CDN kind of merging into a single product
+      - Leverage Microsoft or partner network
+      - `CDN profile` 
+        - network provider (Microsoft, Akamai, Edgio (formerly Verzion)
+        - pricing and other features
+      - `Endpoint`
+        - http:<CDN-endpoint-name>.azureedge.net 
+        - the public facing endpoint that users will be directed to
+      - `Origin / Origin Group`
+        - the underlying solution (webapps, storage accounts) that users are actually accessing (mapped to an endpoint)
+      - Features:
+        - accelerate static and dynamic (with Azure Front Door) content
+        - caching rules
+        - HTTPS custom domain support
+        - File compression
+        - Geo-filtering - block access based on location
 
 4. **Designing App Configuration and Deployment**
     
