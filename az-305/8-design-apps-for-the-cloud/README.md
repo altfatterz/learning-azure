@@ -93,7 +93,7 @@
         - Standard (6 versions)
         - Premium (6 versions, VPN support, Redis cluster, high network bandwith)
       - Built-in roles:
-        - TODO
+        - Redis Cache Contributor - Lets you manage Redis caches, but not access to them.
  
     - [Content Delivery Network](https://learn.microsoft.com/en-us/azure/frontdoor/)
       - Speed up access to static content (images, CSS or HTML)
@@ -114,22 +114,79 @@
         - File compression
         - Geo-filtering - block access based on location
       - Built-in roles:
-        - TODO
-
+        - CDN Endpoint Contributor - Can manage CDN endpoints, but can’t grant access to other users.
+        - CDN Endpoint Reader - Can view CDN endpoints, but can’t make changes.
+        - CDN Profile Contributor - Can manage CDN profiles and their endpoints, but can’t grant access to other users.
+        - CDN Profile Reader - Can view CDN profiles and their endpoints, but can’t make changes.
 
 4. **Designing App Configuration and Deployment**
     
-   - `Azure Resource Manage` - https://learn.microsoft.com/en-us/azure/azure-resource-manager/
-   - `Azure Automation` - https://learn.microsoft.com/en-us/azure/automation/overview/
-   - `Azure App Configuration` - https://learn.microsoft.com/en-us/azure/azure-app-configuration/
-    
+   - [Azure Resource Manage](https://learn.microsoft.com/en-us/azure/azure-resource-manager)
+     - `ARM template` - infrastructure as code, JSON vs Bicep (less verbose) based
+     - Azure Portal, Azure Powershell, Azure CLI --> Azure Resource Manager --> Provision Infrastructure
+     - `Resource provider` - A service that supplies Azure resources. Example: `Microsoft.Compute`, `Microsoft.Storage` etc
+     
+   - [Azure Automation](https://learn.microsoft.com/en-us/azure/automation/overview/)
+     - `Process Automation`
+       - schedule or trigger runbooks (Powershell, python, graphical)
+       - executed on `Azure Sandbox Worker` or on `Hybrid Runbook Worker`
+     - `Configuration Management`
+       - `Change Tracking and Inventory`
+         - Supports change tracking services in your environment to help you diagnose unwanted changes and raise alerts
+       - `Azure Automation State Configuration`
+         - Manage your DSC (desired state configration) resources and apply configurations to virtual or physical machines from a DSC pull server in the Azure cloud.
+     - `Update Management`
+        - Allows report and to rollout update compliance across Azure and other clouds, and on-premises within a definied maintenance window
+     - Key components:
+       - Automation Account - container for shared resources and identities
+       - Automation Worker (Azure Sandbox Worker or Hybrid Automation Worker)
+     - Built-in roles:
+       - `Automation Contributor` - Manage azure automation resources and other resources using azure automation.
+       - `Automation Job Operator` - Create and Manage Jobs using Automation Runbooks.
+       - `Automation Operator` - Automation Operators are able to start, stop, suspend, and resume jobs
+       - `Automation Runbook Operator` - Read Runbook properties - to be able to create Jobs of the runbook.
+       
+   - [Azure App Configuration](https://learn.microsoft.com/en-us/azure/azure-app-configuration/)
+     - Complements Azure KeyVault, which is used to store application secrets. App Configuration makes it easier to implement the following scenarios:
+       - Centralize management and distribution of hierarchical configuration data for different environments and geographies
+       - Dynamically change application settings without the need to redeploy or restart an application
+       - Control feature availability in real-time (feature flags)
+     - The easiest way to add an App Configuration store to your application is through a client library provided
+     - Every request to an Azure App Configuration resource must be authenticated. (access key or Azure AD credentials (preferred))
+     - Recommendation: managed identity from Azure AD allows Azure App Configuration to easily access other Azure AD protected resources.
+     - Built-on roles
+       - `App Configuration Data Owner` - Allows full access to App Configuration data.
+       - `App Configuration Data Reader` - Allows read access to App Configuration data.
+
 5. **Exploring Application Integration Services**
 
-    - `API Management` - https://learn.microsoft.com/en-us/azure/api-management/
-    - `Logic Apps` - https://learn.microsoft.com/en-us/azure/logic-apps/
+    - [API Management](https://learn.microsoft.com/en-us/azure/api-management/)
+      - `API Gateway`
+        - Acts as a facade to backend services by accepting API calls and routing them to appropriate backends
+        - Verifies API keys and other credentials such as JWT tokens and certificates presented with requests
+        - Enforces usage quotas and rate limits
+        - Optionally transforms requests and responses as specified in policy statements
+        - If configured, caches responses to improve response latency and minimize the load on backend services
+        - Emits logs, metrics, and traces for monitoring, reporting, and troubleshooting
+        - Virtual Network connectivity:
+          - `None`
+          - `Internal` 
+            - the API gateway can connect to backend via private IP,
+            - We get an Internal Load Balancer. The client cannot connect unless they are in this internal virtual network 
+          - `External`
+            - the API gateway can connect to backend via private IP still, but with Public Load Balancer
+      - `Management plane`
+        - manage users, get insights from analytics, import API schemas (OpenAPI, WebSocket, GraphQL backends)
+        - setup policies like quotas or transformations on the APIs
+      - `Developer portal`
+        - Web interface that we can provide to business partners
+      - Built-in roles:
+        - TODO
+        
+    - [Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/)
 
    Feature-based comparison of the Azure API Management tiers: https://learn.microsoft.com/en-us/azure/api-management/api-management-features
 
 6. **Exploring Azure AD App Proxy**
 
-    - `Azure AD App Proxy` - https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/
+    - [Azure AD App Proxy](https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/)
