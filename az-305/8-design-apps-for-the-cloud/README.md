@@ -181,12 +181,38 @@
       - `Developer portal`
         - Web interface that we can provide to business partners
       - Built-in roles:
-        - TODO
-        
+        - API Management Developer Portal Content Editor
+        - API Management Service Contributor
+        - API Management Service Operator Role
+        - API Management Service Reader Role
+        - API Management Service Workspace API Developer
+        - API Management Service Workspace API Product Manager
+        - API Management Workspace API Developer
+        - API Management Workspace API Product Manager
+        - API Management Workspace Contributor
+        - API Management Workspace Reader
+
     - [Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/)
+      - You can create and run automated workflows with little to no code
+      - `Logic app` - the container for your workflows
+      - `Workflow` - the set of tasks to be automated as defined by the GUI or code (in json)
+      - `Triggers and Connectors` - push / pull trigger and integration with other resources
+      - Pricing models:
+        - Consumption (multi-tenant)
+        - Standard (single-tenant)
+        - Integration service environment (ISE)
 
    Feature-based comparison of the Azure API Management tiers: https://learn.microsoft.com/en-us/azure/api-management/api-management-features
 
 6. **Exploring Azure AD App Proxy**
 
     - [Azure AD App Proxy](https://learn.microsoft.com/en-us/azure/active-directory/app-proxy/)
+      - providing external access to `on-premise apps` via Azure AD App Proxy 
+        - one way you could do is through VPN (one-to-site)  
+      - Key components:
+        - On-premise application - this is the app to which we will provide access
+        - Connector - need to be installed on-premise (windows server) which has connectivity to the internal app server
+        - Azure AD App registration - the on-premise application will be registered within Azure AD
+        - (optional) On-Premise AD sync to Azure AD (via Azure AD Connect) if we want SSO 
+      - Authentication types:
+        - SAML, Header based, Kerberos, Password, Windows based
