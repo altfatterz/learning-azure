@@ -31,6 +31,8 @@ False       AzureGermanCloud   latest
 
 ```bash
 $ az ad user list -o table
+
+$ az ad user list -o table | grep Architect
 ```
 
 More details: https://build5nines.com/microsoft-azure-is-multiple-clouds-public-us-gov-china-and-germany/
