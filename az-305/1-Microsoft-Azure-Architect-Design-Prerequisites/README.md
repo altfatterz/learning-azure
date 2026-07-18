@@ -271,11 +271,57 @@ virtualMachines  SwitzerlandNorth  Standard_B1s               1,2,3    None
 ![image](../images/microsoft-entra-external-id.png)
 
 - `Azure conditional access`
+  - allow (or deny) access to resources based on `identity signals` 
+    - who the user is, where the user is, what device the user is requesting access from
+  - scenarios:
+    - could require `MFA` for administrators, or for people connecting from outside trusted network locations.
+    - require users to access your application only from managed devices
+    - block access from untrusted sources, such as access from unknown or unexpected locations.
+
+
 - `Azure role-based access control`
+  - The `principle of least privilege` says you should only grant access up to the level needed to complete a task.
+  - Azure provides `built-in roles` that describe common access rules for cloud resources, you can also define your own roles
+  - Each role has an associated set of `access permissions` that relate to that role
+  - When you assign individuals or groups to one or more roles, they receive all the associated access permissions.
+  - Role-based access control is applied to a `scope`, which is a resource or set of resources that this access applies to.
+  - Azure RBAC is `hierarchical` in that when you grant access at a parent scope, those permissions are inherited by all child scopes.
+
+![image](../images/azure-rbac-scope-hierarchy.png)
+
+  - Azure RBAC is enforced on any action that's initiated against an Azure resource that passes through `Azure Resource Manager`.
+  - Azure RBAC doesn't enforce access permissions at the application or data level - application security must be handle by the application
+  - Azure RBAC uses an allow model.
+
 - `Azure Zero Trust model`
+  - Traditionally, perimeter-based networks were restricted, protected, and generally assumed safe.
+  - Only managed computers could join the network, VPN access was tightly controlled, and personal devices were frequently restricted or blocked.
+  - `Zero Trust` model flips that scenario, it requires everyone to authenticate
+  - `Zero Trust` means access decisions are continuous and context-aware, not based only on where the request originates.
+  - Guiding principles:
+    - `Verify explicitly` - Always authenticate and authorize based on all available data points.
+    - `Least privilege access` - limit users with Just-Enough-Access (JEA)
+    - `Assume breach` - limit potential impact, verify end-to-end encryption, use analytics to get visibility
+    
 - `Azure defense-in-depth`
+  - uses a series of mechanisms to slow the advance of an attack that aims at acquiring unauthorized access to data.
+
+![image](../images/defense-in-depth.png)
+
 - `Encryption and key management in Azure`
+ - Encryption helps protect data confidentiality by making data unreadable to unauthorized users.
+ - `Encryption at rest` protects data when it is stored, such as in databases, disks, and storage accounts.
+ - `Encryption in transit` protects data while it moves between services, applications, and users.
+ - `Azure Key Vault` - stores secrets, controls who can access them, rotates and updates keys over time, audit secret usage
+      - Secrets (such as connection strings and passwords)
+      - Encryption keys
+      - Certificates
+ 
 - `Microsoft Defender for Cloud`
+  - Cloud Security Posture Management (CSPM) 
+  - monitors `cloud`, `on-premises`, `hybrid`, and `multicloud` resources and provides `recommendations` and `alerts` to improve `security posture`.
+
+![images](../images/microsoft-defender-for-cloud.png)
 
 ## Introduction to the Microsoft Cloud Adoption Framework
 
