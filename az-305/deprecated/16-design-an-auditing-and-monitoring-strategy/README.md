@@ -1,1 +1,0 @@
-## Chaper 16 - Design an Auditing and Monitoring Strategy

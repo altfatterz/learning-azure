@@ -1,1 +1,0 @@
-## Chapter 11 - Design an Analytics Platform
