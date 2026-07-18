@@ -150,14 +150,74 @@ virtualMachines  SwitzerlandNorth  Standard_B1s               1,2,3    None
 ## Azure storage services
 
 - `Azure storage accounts`
+- data that's accessible from anywhere in the world over HTTP or HTTPS, using REST APIs, SDKs, Azure CLIs, Azure Portal, Azure Storage Explorer
+
+![image](../images/azure-storage-account.png)
+
+- Account Storage Types
+  - `Standard general-purpose v2`
+  - `Premium block blobs`
+  - `Premium file shares`
+  - `Premium page blobs`
+
+![image](../images/account-storage-types.png)
+
+- Every storage account must have a `unique account name` within Azure.
+- Name between 3 and 24 characters may contain numbers and lowercase letters
+
+![images](../images/storage-account-endpoints.png)
+
 - `Azure storage redundancy`
+
+  - `Locally redundant storage` (LRS) - replicates your data three times within a single data center in the primary region
+  - `Zone-redundant storage` (ZRS) - in Availability Zone-enabled Regions, replicates storage data synchronously across three AZs
+    - with ZRS data stays available for read and write operations even if one zone is unavailable.
+  - `Geo-redundant storage` (GRS) - uses LRS for both regions, data is replicated asynchronously between regions
+    - RPO (recovery point obojective) - interval between the last write on the primary region and last write of the secondary region
+    - Azure Storage has an RPO of less than 15 minutes - although there's currently no SLA.
+  - `Geo-zone redundant storage` (GZRS) - uses ZRS in primary region and LRS in secondary region
+  - `RA-GRS` - same as GRS but provides read access to the secondary region
+  - `RA-GZRS` - same as GZRS but provides read access to the secondary region
+
 - `Azure storage services`
+  - `Azure Blobs` 
+    - object store for test and binary data, support for big data analytics through `Data Lake Storage Gen2`.
+    - tiers: hot (frequently accessed), cool (30 days), cold (90 days), archive (180 days)
+    - hot to archive: lower storage cost, higher access cost and retrieval latency 
+  - `Azure Files` - Managed file shares for cloud or on-premises deployments.
+    - fully managed file shares accessed via SMB (Server Message Block) or NFS (Network File System)
+  - `Azure Queues` - messaging store for async applications
+    - queues are accessed with HTTP/HTTPs, can hold millions of messages, messages up to 64 KB
+  - `Azure Disks` - Block-level storage volumes for Azure VMs.
+    - built on top of Azure Blob Storage (Page blobs - optimized for random read and write access)
+    - is essentially a standard Hyper-V Virtual Hard Disk (.vhd) file stored as an Azure Page Blob.
+  - `Azure Tables` - NoSQL table option for structured, non-relational data.
+
 - `Azure data migration options`
+  - `Azure Migrate`
+    - real time migration hub to migrate on-premises data to Azure
+    - single portal to start, run, and track your migration to Azure
+  - `Azure Data Box`
+    - One-time bulk migration of on-premises data to Azure
+    - order Data Box device, after receiving connect it your network, transfer the data and return the Data Box to Microsoft
+    - the entire process is tracked end-to-end by the Data Box service in the Azure portal.
+
 - `Azure file movement options`
+  - `AzCopy`
+    - command line, upload and download files, copy between storage accounts, cross cloud providers
+    - synchronizing blobs or files with AzCopy is one-direction synchronization, you designate the `source` and `destination`
+  - `Storage Explorer` 
+    - GUI app
+    - uses `AzCopy` on the backend
+  - `Azure File Sync`
+    - works only with Windows Server 
+    - [ Local User ] ──> [ Local Windows Server ] ──( Azure File Sync Agent )──> [ Azure File Share ]
+                          (Local Fast Cache)                                     (Central Master Copy)
 
 ## Azure identity, access, and security
 
 - `Azure directory services`
+
 - `Azure authentication methods`
 - `Azure external identities`
 - `Azure conditional access`
