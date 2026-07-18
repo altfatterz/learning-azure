@@ -217,9 +217,59 @@ virtualMachines  SwitzerlandNorth  Standard_B1s               1,2,3    None
 ## Azure identity, access, and security
 
 - `Azure directory services`
+  - `Microsoft Entry ID`
+
+![image](../images/microsoft-entry-id.png)
+   - Microsoft Entra Connect - synchronizes in both ways user identities between on-premises Active Directory and Microsoft Entra ID 
+   - Microsoft Entra Domain Services
+     - domain join, group policy, LDAP, and Kerberos/NTLM authentication
+     - no need to deploy or maintain domain controllers in the cloud
+     - useful for legacy applications that can't use modern authentication
+     - how does it work:
+       - you create a `managed domain` by defining a `unique namespace` - this namespace is the domain name
+       - `Two Windows Server domain controllers` are then deployed into your selected Azure region
+       - This deployment of DCs is known as a replica set.
+       - You don't need to manage, configure, or update these DCs.
+       - The Azure platform handles the DCs as part of the managed domain, including backups and encryption at rest using Azure Disk Encryption.
+     - Sync is described here:
+
+![image](../images/microsoft-entry-id-sync-architecture.png)
 
 - `Azure authentication methods`
+  - `Password Only`
+  - `Multifactor (MFA)`
+    - something the user knows - password
+    - something the user has - code sent to phone
+    - something the user is - biometric signal as fingerprint or face scan
+  - `Passwordless`
+    - `Windows Hello for Business`
+    - `Microsoft Authenticator app`
+    - `FIDO2 security keys`
+      - built on the web authentication (WebAuthn) specification
+      - FIDO2 security keys are hardware devices — typically USB, but also available with Bluetooth or NFC - that handle authentication without a username or password.
+      - Users register a FIDO2 key and then select it at the sign-in screen as their primary authentication method
+      - The `passkey` standard updates this model by allowing your daily devices to act as FIDO2 security keys.
+    
+![image](../images/passwordless-authentication-options.png)
+
+- SSO (single sign on) - lets a user sign in once and access multiple trusted applications
+    
 - `Azure external identities`
+  - An `external identity` is a person, device, or service that exists outside your tenant.
+  - The external identity provider manages authentication, and your tenant handles authorization
+  - types:
+    - `B2B collaboration` 
+      - external partners/vendors/suppliers use their preferred identity to sign in - and appear in your tenant as guest users
+    - `B2B direct connect`
+      - establish a mutual, two-way trust with another Microsoft Entra tenant
+      - users aren't represented in your directory, visible in Teams admin
+      - currently supports Teams shared channels - across organisations
+    - `External ID for customers` (formerly Azure AD B2C)
+      - consumers of your published apps (can be hosted on other cloud provider as well)
+      - directory is a separate External ID tenant
+
+![image](../images/microsoft-entra-external-id.png)
+
 - `Azure conditional access`
 - `Azure role-based access control`
 - `Azure Zero Trust model`
