@@ -173,7 +173,7 @@ virtualMachines  SwitzerlandNorth  Standard_B1s               1,2,3    None
   - `Zone-redundant storage` (ZRS) - in Availability Zone-enabled Regions, replicates storage data synchronously across three AZs
     - with ZRS data stays available for read and write operations even if one zone is unavailable.
   - `Geo-redundant storage` (GRS) - uses LRS for both regions, data is replicated asynchronously between regions
-    - RPO (recovery point obojective) - interval between the last write on the primary region and last write of the secondary region
+    - RPO (recovery point objective) - interval between the last write on the primary region and last write of the secondary region
     - Azure Storage has an RPO of less than 15 minutes - although there's currently no SLA.
   - `Geo-zone redundant storage` (GZRS) - uses ZRS in primary region and LRS in secondary region
   - `RA-GRS` - same as GRS but provides read access to the secondary region
@@ -325,17 +325,64 @@ virtualMachines  SwitzerlandNorth  Standard_B1s               1,2,3    None
 
 ## Introduction to the Microsoft Cloud Adoption Framework
 
-Methodologies:
+- Is a framework that outline a clear and actionable journey to the cloud.
+- includes 8 `methodologies`:
 
-- `Strategy`
-- `Plan`
-- `Ready`
-- `Migrate`
-- `Innovate`
-- `Govern`
-- `Manage`
-- `Secure`
-
+- `Strategy` - helps you align with business goals
+  - Assess your strategy
+  - Define your motivations (KPIs), missions and objectives
+  - Define your team
+  - Prepare your organization
+  - Inform your strategy
+- `Plan` - converts your cloud strategy into actionable steps
+  - Prepare your organization for the cloud
+  - Prepare your people for the cloud
+  - Discover existing workload inventory
+  - Select migration strategies
+  - Assess your workloads for cloud migration
+  - Estimate total cost of ownership - `Azure Pricing Calculator`
+- `Ready` - create a strong foundation for cloud adoption
+  - Setup your Azure environment
+  - Define a cloud operating model
+  - Implement `landing zones`
+    - foundation for `security`, `governance`, and `resource management`
+  - Develop necessary skills
+  - Avoid antipatterns
+- `Migrate` - planning, executing, and optimizing workload migrations from on-premise to Azure
+  - Plan migration
+  - Prepare workloads for the cloud
+  - Execute migrations
+  - Optimize workloads after migration
+  - Decommission source workloads
+- `Innovate` - improving existing cloud-based workloads / create new business value with cloud native solutions
+  - Prepare organization for cloud modernization
+  - Plan your cloud modernization
+  - Execute modernizations in the cloud
+  - Optimize workloads after cloud modernization
+  - Planning cloud-native solutions on Azure
+  - Build cloud-native solutions
+  - Deploy cloud-native solutions
+  - Optimize the cloud-native solutions after deployment
+- `Govern` - establish and optimize governance
+  - Build a cloud governance team
+  - Assess cloud risks
+  - Document cloud governance policies
+  - Enforce cloud governance policies
+  - Monitor cloud governance policies
+- `Manage` - establishes effective operation
+  - Ready your Azure cloud operations
+  - Administer your Azure cloud estate
+  - Monitor your Azure cloud estate
+  - Protect your cloud estate
+- `Secure` - enhance your security posture
+  - Take advantage of security guidance, use the guides: 
+    - Cloud Adoption Framework Secure methodology
+    - Azure Well-Architected Framework security guidance
+    - Microsoft cloud security benchmark
+    - Zero Trust guidance
+  - Use the CIA Triad model (Confidentiality/Integrity/Availability)
+  - Assign appropriate security roles
+  
 ## Introduction to the Microsoft Azure Well-Architected Framework
 
 The Azure Well-Architected Framework pillars:
