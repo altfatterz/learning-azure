@@ -77,19 +77,40 @@
 ## Design authentication and authorization solutions
 
 - `Identity and Access Management. (IAM)`
-- `Microsoft Entra ID`
+  - Unified identity management - Manage all your identities and access to apps in a central location
+  - Seamless user experience - fast sign-in experience
+  - Secure adaptive access - risk-based adaptive access policies without compromising the user experience 
+
+- `Microsoft Entra ID`- https://learn.microsoft.com/en-us/entra/identity/
+  - is a hybrid identity solution
+  - with `Microsoft Entra Connect` you can bring on-premises identities into Microsoft Entra ID
+  - consider using a `single Microsoft Entra instance`
+  - consider phishing-resistant authentication methods like passkeys - origin-bound public-key cryptography and satisfy MFA in a single step. 
+  - consider using SSO
+  - consider overhead of managing separate identities
+
 - `Microsoft Entra business-to-business (Microsoft Entra B2B)`
+
 - `Azure Active Directory B2C (business-to-customer)`
+
 - `Conditional Access`
+
 - `Identity protection`
+
 - `Access Reviews`
+
 - `Managed identities`
+
 - `Service principals for applications`
+
 - `Azure Key Vault`
 
 ## Design a solution to log and monitor Azure resources
 
 - `Azure Monitor data sources`
+
 - `Azure Monitor Logs (Log Analytics) workspaces`
+
 - `Azure Workbooks and Azure Insights`
+
 - `Azure Data Explorer`
