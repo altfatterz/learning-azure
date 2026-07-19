@@ -2,23 +2,77 @@
 
 ## Design governance
 
-- Governance ensures those `rules` and `policies` are enforced.
-- Governance helps you maintain control over the `resources` you manage in the cloud
-- Governance ensures that you `stay compliant` with:
-  - Industry standards, such as information security management.
-  - Corporate or organizational standards, such as ensuring that network data is encrypted.
-- Governance is beneficial when you have:
-  - Multiple engineering teams working in Azure.
-  - Multiple subscriptions to manage.
-  - Regulatory requirements that must be enforced.
-  - Standards that must be followed for all cloud resources.
+- First create a `hierarchical structure` for your organizational environment.
+- `Tenant root group`
+  - `management groups` - 
+    - `subscriptions` - billing boundaries
+      - `resource groups` 
+        - `resources`
+- The structure enables to apply governance strategies (`Azure policies` / `resource tags`) where they are needed
 
 - `Management Groups`
-- `Subscriptions`
+  - can be nested up to 6 levels (not including the tenant group or the subscription level)
+  - Keep the management group hierarchy reasonably flat
+  - consider: 
+    - geographical structure
+    - organizational or departmental structure
+    - production management group
+    - sensitive information with separate management group
+
+- `Subscriptions` - separate billing
+  - development, test, and production
+  - HR / Legal / R&D
+  - example: dedicated shared services subscription
+    - shared services subscriptions include `Azure ExpressRoute` and `Virtual WAN`.
+
 - `Resource groups`
+  - have their own location (region) assigned, this is where metadata is stored
+  - resources in the resource group can be in different regions.
+  - a resource in resource group can connect to resources in another resource group
+  - resources can be moved between resource groups with some exceptions, each resource must be one, and only one resource group
+  - resource groups can't be nested / can't be renamed
+
+-`Resource Tags`
+  - name/value pair, ex: env = production or env = dev, test.
+  - You can assign one or more tags to each `Azure resource`, `resource group`, or `subscription` - not to management groups
+  - Resource tags are not inherited
+  - Consider using `Azure policy` to apply tags and enforce tagging rules and conventions.
+
 - `Azure Policy`
-- `Resource Tags`
-- `Azure landing zones`
+  - Azure policies are `inherited` down the hierarchy - on all 4 levels
+  - There are built-in policies https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies
+  - Groups of related policies called `initiatives`
+  - List of built-in initiatives https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-initiatives
+  - examples: 
+    - VMs limited to certain SKUs
+    - Enforce product tag and value
+    - Only deploy to certain locations
+  - `Azure Policy compliance dashboard` 
+  - Consider how to handle a noncompliant resource
+    - Deny changes to the resource.
+    - Log changes to the resource.
+    - Alter the resource before or after the change.
+  - `Azure Policy` vs `Azure RBAC` 
+    - with `Azure Policy` doesn't depend on who made the change, it only evaluates the state of resource and acts to ensure the resource stays compliant.
+    - with `Azure RBAC` it matters who makes the change, what they can do with the resource
+    - If a user has access to complete an action based on `Azure RBAC` but the result is a noncompliant resource, `Azure Policy` still blocks the action.
+
+- `Azure RBAC`
+  - `Who`(Identity) / `What`(Role (Built-in/Custom)) / `Where` (Scope: Tenant/Managemnt Group/Subscription/Resource Group/Resource)
+  - Role - group of permissions
+    - Owner - for admins
+    - Contributor - read write access
+    - Reader - for observers, auditors, reviewers
+  - Custom roles - grant precise level of access
+  - Assign: an `Identity` to `Role` within a `Scope`
+    - Azure RBAC is an `additive model` - effective permissions are the `sum of your role assignments`.
+    
+- `Azure landing zones` - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/?tabs=hubspoke
+  - infrastructure environment for hosting your workloads, management groups, subscriptions
+  - platform landing zone
+  - application landing zone
+  - Landing zones are pre-provisioned through code. (Bicep or Terraform)
+  - `Azure landing zone accelerator` - template
 
 ## Design authentication and authorization solutions
 
