@@ -90,18 +90,53 @@
   - consider overhead of managing separate identities
 
 - `Microsoft Entra business-to-business (Microsoft Entra B2B)`
+  - the external partner uses their own identity management solution
+  - your partner users are invited as guest users.
 
-- `Azure Active Directory B2C (business-to-customer)`
+- `Azure Active Directory B2C (business-to-customer)` - Microsoft Entra External ID
+  - managing customer identities and their access to your apps
+  - requires a new Microsoft Entra tenant
 
-- `Conditional Access`
+![image](../images/identities.png)
+
+- `Conditional Access` 
+  - tool that Microsoft Entra ID uses to allow (or deny) access to resource based on `signals`
+  - you need a Microsoft Entra ID P1 or P2 license
+  - if you have a Microsoft 365 Business Premium license, you also have access to Conditional Access features.
+
+- `Privileged Identity Management`
+  - Just-In-Time access 
+  - ex: you request to be an admin for 2 hours
+  - Activates a temporary, time-bound role assignment after you provide a business justification.
 
 - `Identity protection`
+  - provides `risk policy detection` - any identified suspicious actions
+    - user risk - probability that a given identity or account is compromised
+    - sign-in risk - probability that a given sign-in isn't authorized by the identity owner.
+  - below workflow: 
+    - administrator first configures the risk policies that then monitor for identity risks.
+    - when risk is detected the policies enforce measures to remediate it.
+    - A policy might, for example, prompt a user to reset their password in response to a risk detected.
+    - The user then resets their password, and the risk is remediated.
+
+![image](../images/identity-protection.png)
 
 - `Access Reviews`
-
-- `Managed identities`
+  - is a planned review of the access needs, rights, and history of user access.
 
 - `Service principals for applications`
+  - it acts as a dedicated application account that can authenticate without human intervention.
+  - authenticates using one of two methods:
+    - Client Secret
+    - Certificates
+
+- `Managed identities`
+  - The "Secret-Less" Service Principal
+  - Microsoft recommends avoiding traditional Service Principals in favor of `Managed Identities`
+  - A managed identity is a service principal wrapped in a protective layer managed entirely by Azure
+  - If your code runs inside Azure (Azure VM / Azure Function) you can turn on Managed Identity
+  - Azure will automatically handle creating the Service Principal, authenticating it, and rotating the credentials behind the scenes.
+  - 
 
 - `Azure Key Vault`
 

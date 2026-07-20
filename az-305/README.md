@@ -33,5 +33,8 @@ In this role, you implement solutions on Azure by partnering with various other 
 ### Study Guide
 - https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/az-305
 
+### Video course from Microsoft Learn
+- https://www.youtube.com/watch?v=cxp9oRSrTcE&list=PLahhVEj9XNTejs0fgXT6HXaj_a_qsUoKa
+
 ### Practice tests
 - https://www.udemy.com/course/az-305-practice-tests-azure-solutions-architect-expert-latest/?couponCode=25BBPMXINACTIVE
