@@ -133,12 +133,35 @@
 - `Managed identities`
   - The "Secret-Less" Service Principal
   - Microsoft recommends avoiding traditional Service Principals in favor of `Managed Identities`
-  - A managed identity is a service principal wrapped in a protective layer managed entirely by Azure
-  - If your code runs inside Azure (Azure VM / Azure Function) you can turn on Managed Identity
+  - A managed identity is a service principal wrapped in a protective layer managed entirely by Azure 
+  - If your code runs inside Azure (Azure VM / Azure Function) you can turn on Managed Identity on resource level
   - Azure will automatically handle creating the Service Principal, authenticating it, and rotating the credentials behind the scenes.
-  - 
+  - two types
+    - `System-assigned`
+      - an identity is created in Microsoft Entra tied to the lifecycle of an Azure resource
+      - when the resource is deleted, Azure automatically deletes the identity.
+      - only that Azure resource can use that identity to request tokens from Microsoft Entra ID
+    - `User-assigned`
+      - create the managed identity as a standalone resource
+      - you can assign it to one or more instances of an Azure resources
 
 - `Azure Key Vault`
+  - Manages 
+    - secrets - passwords / tokens / API keys 
+    - keys - these are encryption keys to encrypt your corporate data
+    - certificates - these are public or private TLS/SSL certificates for with Azure and internal connected services
+  - Standard tier
+  - Premium tier - offers hardware security module (HSM)-protected keys
+  - Logging and monitoring in Key Vault - helps you understand how and when secrets are accessed.
+  - Permission model
+    - Azure role-based access control (recommended)
+    - Vault access policy - determines whether a given `security principal`, namely a user, application or user group, can perform different operations on keys, secrets and certificates.
+  - Tips:
+    - Consider using separate key vaults
+    - Consider access to the key vault
+    - Consider data protection for your key vault
+      - `Soft delete` - like recycle bin, can be recovered
+      - `Purge protection` - if enabled then it can be recovered during the configurable retention period
 
 ## Design a solution to log and monitor Azure resources
 
