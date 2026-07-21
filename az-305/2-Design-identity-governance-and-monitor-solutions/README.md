@@ -165,10 +165,65 @@
 
 ## Design a solution to log and monitor Azure resources
 
-- `Azure Monitor data sources`
+- `Azure Monitor`
+  - `Azure Monitor Logs`
+    - Collect any data, then transform to optimize costs, remove personal data and route data your Log Analytics workspace
+  - `Azure Monitor Metrics`
+    - stores numeric data in a time-series database.
+  - `Azure Monitor` collects data using `Data Collection Rules` (DCRs)
+  - The following data types are collected through DCRs by the `Azure Monitor Agent` (AMA):
+    - Windows events
+    - Performance counters
+    - Syslog
+    - Custom logs (text and JSON) - JSON log files on a local disk, collected via AMA
+    - Consider queries on Logs data - `Kusto Query Language (KQL)`
+    - Consider `alerts` based on Logs and Metrics data
+
+![image](../images/azure-monitor.png)
 
 - `Azure Monitor Logs (Log Analytics) workspaces`
+  - Log data is stored in Azure Monitor Logs (Log Analytics) workspace
+  - A `workspace` is an Azure resource that serves as an administrative boundary or geographic location for data storage
+  - You can deploy one or more `workspaces` in your Azure subscription
+  - With Azure RBAC you can grant users and groups only the amount of access they need to work with monitoring data in a workspace
+  - Data in an `Azure Monitor Logs workspace` is organized into `tables` - Each table stores different kinds of data
+  - You can set billing and retention for each `workspace`.
+  - `Workspaces` are hosted on physical clusters, dedicated clusters can be requested
 
 - `Azure Workbooks and Azure Insights`
+  - Workbooks 
+    - rich visual reports
+    - combine data from disparate sources within a single report
+  - Insights
+    - `Azure Insights` provide a customized monitoring experience for particular applications and services.
+    - `Azure Insights` collect and analyze both logs and metrics.
+      - Application Insights
+      - Container Insights
+      - Network Insights
+      - Resource group insights
+      - Virtual machine insights
+      - Azure Cosmos DB insights
+      - Azure Key Vault insights
+      - Azure Storage insights
+  - Best for standard operational logging (<500 GB/day).
 
-- `Azure Data Explorer`
+- `Azure Data Explorer` - https://learn.microsoft.com/en-us/azure/data-explorer/
+  - analyze high volumes of data in near real time
+  - supports long data retention in a cost effective manner
+  - uses also KQL
+  - Best for high-volume logs (>500 GB to Petabytes/day).
+  - You create an `Azure Data Explorer Cluster`
+
+- `Azure Monitor vs Azure Data Explorer`
+  - Choose Azure Monitor if:
+    - You need immediate, turnkey visibility into Azure VMs, AKS clusters, networks, or applications.
+    - You want out-of-the-box alerts, action groups, and portal dashboards without managing database infrastructure. 
+    - Your daily log ingestion is moderate (generally under 500 GB/day).
+  - Choose Azure Data Explorer if:
+    - You are processing high-volume telemetry (IoT sensor data, clickstream logs, games telemetry, high-frequency operational metrics).
+    - You want to build a custom internal analytics app or SaaS product that queries data using KQL.
+    - You want to export high-volume Azure Monitor logs to ADX via Event Hubs to reduce Log Analytics storage and query costs.
+
+- `Microsoft Sentinel`
+  - is Microsoft's cloud-native platform that unifies `SIEM` (Security Information and Event Management) 
+  and `SOAR` (Security Orchestration, Automation, and Response) into a single service.
