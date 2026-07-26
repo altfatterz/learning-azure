@@ -40,10 +40,10 @@
 
 ## Design a solution for backup and disaster recovery
 
-- Design for backup and recovery
-- Design for Azure Backup
-- Design for Azure blob backup and recovery
-- Design for Azure files backup and recovery
-- Design for Azure virtual machine backup and recovery
-- Design for Azure SQL backup and recovery
-- Design for Azure Site Recovery
+- Design for `backup and recovery`
+- Design for `Azure Backup`
+- Design for `Azure blob backup and recovery`
+- Design for `Azure files backup and recovery`
+- Design for `Azure virtual machine backup and recovery`
+- Design for `Azure SQL backup and recovery`
+- Design for `Azure Site Recovery`
